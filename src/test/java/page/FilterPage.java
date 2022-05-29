@@ -6,8 +6,8 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class FilteriPage extends BaseTest {
-    public FilteriPage () {
+public class FilterPage extends BaseTest {
+    public FilterPage() {
         PageFactory.initElements(driver,this);
     }
 

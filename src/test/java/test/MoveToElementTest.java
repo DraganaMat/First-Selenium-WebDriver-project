@@ -4,12 +4,13 @@ import base.BaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.WebElement;
 import page.*;
 
 public class MoveToElementTest extends BaseTest {
     RegistrationPage registrationPage;
     KombinovaniSporetiPage kombinovaniSporetiPage;
-    FilteriPage filteriPage;
+    FilterPage filterPage;
     ZoricaKomentarPage zoricaKomentarPage;
     BekoFSS54010DWPage bekoFSS54010DWPage;
     GorenjeK5111SGPage gorenjeK5111SGPage;
@@ -19,24 +20,46 @@ public class MoveToElementTest extends BaseTest {
 
         registrationPage = new RegistrationPage();
         kombinovaniSporetiPage = new KombinovaniSporetiPage();
-        filteriPage = new FilteriPage();
+        filterPage = new FilterPage();
         zoricaKomentarPage = new ZoricaKomentarPage();
         bekoFSS54010DWPage = new BekoFSS54010DWPage();
         gorenjeK5111SGPage = new GorenjeK5111SGPage();
-        Thread.sleep(15000);
-        //WebElement popUpButton = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35743').shadowRoot.querySelector('#PsCloseButton')");
-        //popUpButton.click();
-//        WebElement popUpButtonOne = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35986').shadowRoot.querySelector('#PsCloseButton')");
-//        popUpButtonOne.click();
-//        WebElement popUpButtonTwo = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35018').shadowRoot.querySelector('#PsCloseButton')");
-//        popUpButtonTwo.click();
-        // WebElement popUpButtonThree = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35848').shadowRoot.querySelector('#PsCloseButton')");
-        // popUpButtonThree.click();
-//        WebElement popUpButtonFour = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-36444').shadowRoot.querySelector('#PsCloseButton')");
-//      popUpButtonFour.click();
-//        WebElement popUpButtonFive = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-36499').shadowRoot.querySelector('#PsCloseButton')");
-//        popUpButtonFive.click();
+//        Thread.sleep(15000);
+        WebElement popUpButtonFive = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-36499').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButton = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35743').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButtonOne = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35986').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButtonTwo = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35018').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButtonThree = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35848').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButtonFour = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-36444').shadowRoot.querySelector('#PsCloseButton')");
+
+        if (popUpButtonFive.isDisplayed()) {
+            popUpButtonFive.click();
+        }
+        else if (popUpButtonOne.isDisplayed()) {
+            popUpButtonOne.click();
+        }
+        else if (popUpButtonTwo.isDisplayed()){
+            popUpButtonTwo.click();
+        }
+        else if (popUpButtonThree.isDisplayed()) {
+
+            popUpButtonThree.click();
+        } else if (popUpButtonFour.isDisplayed()) {
+
+            popUpButtonFour.click();
+        } else if (popUpButton.isDisplayed()) {
+
+            popUpButton.click();
+        }
     }
+
+    /** Ovaj Test Case će hoverovati preko "Svi proizvodi", potom "Bela tehnika" pa na "šporete".
+     *  Zatim će kliknuti na kombinovane šporete, izabrati Gorenje filter, izabrati Gorenje šporet,
+     *  asertovati boju šporeta, potom se vratiti nazad poništiti sve filtere
+     * izabrati Beko filter, izabrati Beko šporet, proveriti da je cena na popustu
+     * i potom proveriti ceo komentar koji je ostavila Zorica (datum, naslov, tekst komentara).
+     */
+
 
     @Test
 
@@ -49,19 +72,19 @@ public class MoveToElementTest extends BaseTest {
         registrationPage.prihvatamButtonClick();
         kombinovaniSporetiPage.kombinovaniSporetiFocus();
         kombinovaniSporetiPage.kombinovaniSporetiClick();
-        filteriPage.filterGorenjeHover();
-        filteriPage.filterGorenjeClick();
-        filteriPage.sporetGorenjeHover();
-        filteriPage.sporetGorenjeClick();
+        filterPage.filterGorenjeHover();
+        filterPage.filterGorenjeClick();
+        filterPage.sporetGorenjeHover();
+        filterPage.sporetGorenjeClick();
         Assert.assertTrue(gorenjeK5111SGPage.bojaAparataDisplayed());
         String bojaAparata = gorenjeK5111SGPage.bojaAparataAssert();
         Assert.assertEquals("Boja aparata: Siva metalik", bojaAparata);
         driver.navigate().back();
-        filteriPage.ponistiFiltereClick();
-        filteriPage.filterBekoFocus();
-        filteriPage.filterBekoClick();
-        filteriPage.sporetBekoFocus();
-        filteriPage.sporetBekoClick();
+        filterPage.ponistiFiltereClick();
+        filterPage.filterBekoFocus();
+        filterPage.filterBekoClick();
+        filterPage.sporetBekoFocus();
+        filterPage.sporetBekoClick();
         Assert.assertTrue(bekoFSS54010DWPage.cenaPopustDisplayed());
         String popust = bekoFSS54010DWPage.cenaPopustAssert();
         Assert.assertEquals("25.579", popust);

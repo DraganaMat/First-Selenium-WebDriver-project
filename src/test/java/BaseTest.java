@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -15,71 +16,65 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseTest {
 
-    //Ovde smo deklarisali nasu promenljivu driver koja pokrece Chrome
+    //Declaration of variable driver which starts Chrome
     public static WebDriver driver;
     JavascriptExecutor js;
-    //Ovde smo deklarisali nasu promenljivu za cekanje
+    //Declaration of Wait variable
     public static WebDriverWait wdWait;
     public static Actions actions;
 
-    // Ovo je Junit anotacija koja govori da ce se ova metoda izvrsiti pre svih testova
+    //This is JUnit anonotation, always runs before the execution of each test case
     @Before
-    //Ovo je metoda koju mi pisemo proizvoljno i tu stavljamo sve sto je potrebno izvrsiti PRE svih testova
+    //This is a method that we write arbitrarily and put everything that needs to be done BEFORE all the tests
+
     public void setUp() throws InterruptedException {
-        //Ovo automatski skida odgovarajucu verziju drajvera
+        //This automatically downloads the corresponding version of the driver
         WebDriverManager.chromedriver().setup();
-        //Ovde smo promenljivoj Driver dodelili objekat klase ChromeDriver
+        //Creating an object of ChromeDriver
         driver = new ChromeDriver();
         wdWait = new WebDriverWait(driver, 30);
         js = (JavascriptExecutor) driver;
         actions = new Actions(driver);
-        //Ovde smo drajveru rekli da ode na google stranicu
-       // driver.get("https://www.google.com/");
-        //Ovde smo drajveru rekli da uveca prozor
         driver.manage().window().maximize();
+        //to navigate to a particular URL
         driver.get("https://www.ctshop.rs/customer/account/create");
-//        Thread.sleep(20000);
-        // driver.findElements(By.className("ub-emb-close")).get(0).click();
-       // WebElement popUpButton = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35743').shadowRoot.querySelector('#PsCloseButton')");
-       // popUpButton.click();
-//        WebElement popUpButtonOne = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35986').shadowRoot.querySelector('#PsCloseButton')");
-//        popUpButtonOne.click();
-//        WebElement popUpButtonTwo = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35018').shadowRoot.querySelector('#PsCloseButton')");
-//        popUpButtonTwo.click();
-       // WebElement popUpButtonThree = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35848').shadowRoot.querySelector('#PsCloseButton')");
-       // popUpButtonThree.click();
+         Thread.sleep(20000);
+        WebElement popUpButton = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35743').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButtonOne = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35986').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButtonTwo = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35018').shadowRoot.querySelector('#PsCloseButton')");
+        WebElement popUpButtonThree = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35848').shadowRoot.querySelector('#PsCloseButton')");
+        if (popUpButton.isDisplayed()) {
+
+            popUpButton.click();
+        }
+        else if (popUpButtonOne.isDisplayed()) {
+
+            popUpButtonOne.click();
+        }
+        else if (popUpButtonTwo.isDisplayed()){
+
+            popUpButtonTwo.click();
+
+        } else if (popUpButtonThree.isDisplayed()) {
+
+            popUpButtonThree.click();
+
+        }
 
     }
 
-    //Ovo je Junit anotacija koja koja govori da ce se ova metoda izvrsiti posle svih testova
+    //This is a Junit annotation, this method will be performed after all the tests
     @After
-    //Ovo je metoda koju mi pisemo proizvoljno i tu stavljamo sve sto je potrebno izvrsiti POSLE svih testova
+    //
     public void tearDown() {
-        //Ova komanda zatvara samo tab koji je u fokusu
+
         driver.close();
-        //Ova komanda zatvara ceo proces odnosno ceo pretrazivac (driver)
-        //driver.quit();
     }
 
+    //This is a method whose name we give arbitrarily and that's where we put all the test steps
+
     @Test
-    //Ovo je metoda cije ime dajemo proizvoljno i tu stavljamo sve test korake
     public void firstTest() {
-        //slozena klasa preko cssSelectora
-        // .gLFyf.gsfi
-        // cssSelector preko atributa
-        //[maxlength = "2048"]
-        //apsolutni xpath Ne SMEMO DA KORISTIMO
-        //html/head/body/table/tbody/tr/th
-        //C: /My documents/My pictures/More 2019/Grcka/zalazak sunca.jpg
-        //relativni xpath OBAVEZNO KORISTIMO AKO KORISTIMO XPATH
-        //zalazak sunca.jpg
-        //relativni xpath preko atributa
-        //input [@maxlength ="2048"]
-        //*[@maxlength = "2048"]
-    }
-
-    @Test
-    public void secondTest() {
 
         driver.findElement(By.name("q")).clear();
         driver.findElement(By.name("q")).sendKeys("Beograd");
@@ -110,7 +105,6 @@ public class BaseTest {
     }
 
     @Test
-
     public void selectSeleniumExampleTest() {
 
         driver.get("https://www.ctshop.rs/customer/account/create");
@@ -154,19 +148,46 @@ public class BaseTest {
 
         wdWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Pošalji')]")));
         driver.findElement(By.xpath("//span[contains(text(),'Pošalji')]")).click();
-       // wdWait.until(ExpectedConditions.presenceOfElementLocated(cssSelector(".alert-success")));
-       // Assert.assertTrue(driver.findElement(By.cssSelector(".alert-success")).isDisplayed());
-       // Assert.assertEquals("Hvala na registraciji. Molimo proverite email i aktivirajte Vaš nalog",
-       // driver.findElement(By.cssSelector(".alert-success")).getText());
 
     }
+    @Test
 
+    public void comtradeRegistrationLegalEntitySuccess () {
+
+        wdWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text() = 'Prihvatam']"))).click();
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("firstname"))).clear();
+        driver.findElement(By.id("firstname")).sendKeys("Isabella");
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("lastname"))).clear();
+        driver.findElement(By.id("lastname")).sendKeys("Volanti");
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("email_address"))).clear();
+        driver.findElement(By.id("email_address")).sendKeys("folmeokne@vusro.com");
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("is_subscribed")));
+        if (driver.findElement(By.id("is_subscribed")).isSelected()) {
+            driver.findElement(By.id("is_subscribed")).click();
+        }
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("pravnolice")));
+        Select pravnolice = new Select(driver.findElement(By.id("pravnolice")));
+        pravnolice.selectByVisibleText("Da");
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("firma"))).clear();
+        driver.findElement(By.id("firma")).sendKeys("Isabella Tech");
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("pib"))).clear();
+        driver.findElement(By.id("pib")).sendKeys("123456789");
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("password"))).clear();
+        driver.findElement(By.id("password")).sendKeys("Anajd56#");
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.id("confirmation"))).clear();
+        driver.findElement(By.id("confirmation")).sendKeys("Anajd56#");
+        wdWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//span[contains(text(),'Pošalji')]")));
+        driver.findElement(By.xpath("//span[contains(text(),'Pošalji')]")).click();
+        wdWait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".alert-success")));
+        Assert.assertTrue(driver.findElement(By.cssSelector(".alert-success")).isDisplayed());
+        Assert.assertEquals("Hvala na registraciji. Molimo proverite email i aktivirajte Vaš nalog", driver.findElement(By.cssSelector(".alert-success")).getText());
+
+    }
  @Test
 
     public void smederevacSporet () throws InterruptedException {
 
-   //Action metodu sam deklarisala u Base klasi i dodelila mu vrednost u @Beforu
-   // Pop-up sam zakomentarisala u @Beforu, pošto ga sinoc nije bilo i test mi je pucao
+   //Action method is declared in Base class and is initialized in @Before
    wdWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text() = 'Prihvatam']"))).click();
    wdWait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".am-opener")));
    actions.moveToElement(driver.findElement(By.cssSelector(".am-opener"))).perform();
@@ -180,7 +201,6 @@ public class BaseTest {
    actions.moveToElement(driver.findElement(By.xpath("//label[text()='Gorenje']"))).perform();
    wdWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//label[text()='Gorenje']"))).click();
    js.executeScript("window.scrollBy(0,1000)");
-   //Modela K5111WG više nema, našla sam prvi odgovarajući gde se pojavljuje "Boja aparata: Siva metalik"
    actions.moveToElement(driver.findElement(By.xpath("//a[starts-with(@title, 'K5111SG')]"))).perform();
    wdWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[starts-with(@title, 'K5111SG')]"))).click();
    wdWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(), 'Boja aparata')]")));
@@ -278,8 +298,9 @@ public class BaseTest {
               driver.findElement(By.cssSelector(".alert-warning")).getText());
   }
 
-    //Ovo je kraj nase klase i nista ne sme biti posle viticaste zagrade
-     //test bez asserta ne postoji
+     // This is the end of the class.
+     // Nothing can be written after curly brackets.
+     //There is no test without assert.
 
     }
 

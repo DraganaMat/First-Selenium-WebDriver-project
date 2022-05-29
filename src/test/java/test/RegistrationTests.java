@@ -36,9 +36,10 @@ public class RegistrationTests extends BaseTest {
     }
 
     /**
-     * Ovaj test case ce se ulogovati na Cometrade shop kao fizičko lice.
+     * Ovaj test case ce se logovati na Cometrade shop kao fizičko lice.
      * Nakon uspešnog logovanja će se prikazati alert,"Hvala na registraciji.
      * Molimo proverite email i aktivirajte Vaš nalog".
+     * Dodatna stavka: testiranje performansi sa @CashLookup i bez pomoću for petlje.
      */
     @Test
     public void successfulRegistrationTest() {
