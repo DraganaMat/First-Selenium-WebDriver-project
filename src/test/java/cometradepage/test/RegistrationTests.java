@@ -1,15 +1,15 @@
-package test;
+package cometradepage.test;
 
-import base.BaseTest;
+import cometradepage.base.BaseTest;
+import cometradepage.page.ConfirmationPage;
+import cometradepage.page.RegistrationPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import page.ConfirmationRegistrationPage;
-import page.RegistrationPage;
 
 public class RegistrationTests extends BaseTest {
     RegistrationPage registrationPage;
-    ConfirmationRegistrationPage confirmationRegistrationPage;
+    ConfirmationPage confirmationPage;
     //tip promenljive i ime promenljive
 //    Pošto ne možemo da nasledimo Page klasu, nama trebaju njene metode.
 //    Kako bismo ih koristili napravicemo od njih objekte
@@ -19,7 +19,7 @@ public class RegistrationTests extends BaseTest {
         // dinamicki polimorfizam, pregazili smo metodu i napravili smo novu, overajdovali smo je, kad se zovu isto.
         //@Before metode ne smeju da se zovu isto, zbog dinamičkog polimorfizma.
         registrationPage = new RegistrationPage();
-        confirmationRegistrationPage = new ConfirmationRegistrationPage();
+        confirmationPage = new ConfirmationPage();
         Thread.sleep(10000);
         //WebElement popUpButton = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35743').shadowRoot.querySelector('#PsCloseButton')");
         //popUpButton.click();
@@ -36,11 +36,12 @@ public class RegistrationTests extends BaseTest {
     }
 
     /**
-     * Ovaj test case ce se logovati na Cometrade shop kao fizičko lice.
-     * Nakon uspešnog logovanja će se prikazati alert,"Hvala na registraciji.
-     * Molimo proverite email i aktivirajte Vaš nalog".
-     * Dodatna stavka: testiranje performansi sa @CashLookup i bez pomoću for petlje.
-     */
+     * This test case will log in to the Cometrade shop as a user.
+       * After successful login there will be displayed alert, "Thank you for registering.
+       * Please check your email and activate your account."
+       * Additional item: performance testing with @CashLookup and for loops.
+      */
+
     @Test
     public void successfulRegistrationTest() {
 
@@ -65,15 +66,16 @@ public class RegistrationTests extends BaseTest {
         registrationPage.sifraInputFieldSendKeys("123456s");
         registrationPage.potvrdaSifreInputFieldSendKeys("123456s");
         registrationPage.posaljiButtonClick();
-        String alertSuccess = confirmationRegistrationPage.alertSuccessAssert();
+        String alertSuccess = confirmationPage.alertSuccessAssert();
         //every statement like this, are actually two calls
-        // (FindBy to find the element and getText to get the text.
+        // @FindBy to find the element and getText to get the text.
         Assert.assertEquals("Hvala na registraciji. Molimo proverite email i aktivirajte Vaš nalog.", alertSuccess);
-        Assert.assertTrue(confirmationRegistrationPage.alertSuccessDisplayed());
+        Assert.assertTrue(confirmationPage.alertSuccessDisplayed());
     }
 
-    /**Ovaj test case se logovati kao pravno lice,sa dve različite lozinke.
-     * Assertovati alert o neuspesnoj registraciji.
+    /**This test case will log in as legal entity,
+     *  with two different passwords
+     * Assert an alert about unsuccessful registration
      */
 
     @Test
@@ -92,13 +94,12 @@ public class RegistrationTests extends BaseTest {
         registrationPage.posaljiButtonClick();
         Assert.assertEquals(sifra, potvrda);
         Assert.assertTrue(registrationPage.alertWarningDisplayed());
-
  }
 
-     /** Ovaj test case ce se ulogovati sa istom mail adresom.
-      * Nakon logovanja treba da iskoči alert,
+     /** This test case will log in with sam mail adress
+      * After login  there will be displayed alert,
       * "Već postoji nalog sa unetom email adresom! Molimo ulogujte se!"
-      * Proveriti da se nije pojavio alert o uspešnoj registraciji.
+      * Assert an alert about successful registration
       */
  @Test
     public void sameMailadressTest() {
@@ -115,8 +116,8 @@ public class RegistrationTests extends BaseTest {
        Assert.assertTrue(registrationPage.alertWarningDisplayed());
  }
 
-    /** Negativni test case.
-     *  Uneti pib od devet karaktera.
+    /** Negative test case.
+     *  Enter a nine-character pib
      */
  @Test
 
