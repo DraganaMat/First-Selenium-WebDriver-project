@@ -1,17 +1,17 @@
-package cometradepage.test;
+package test;
 
-import cometradepage.base.BaseTest;
-import cometradepage.page.*;
+import base.BaseTest;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.WebElement;
+import page.*;
 
 public class MoveToElementTest extends BaseTest {
     RegistrationPage registrationPage;
     KombinovaniSporetiPage kombinovaniSporetiPage;
     FilterPage filterPage;
-    CommentSectionsPage commentSectionsPage;
+    ZoricaKomentarPage zoricaKomentarPage;
     BekoFSS54010DWPage bekoFSS54010DWPage;
     GorenjeK5111SGPage gorenjeK5111SGPage;
 
@@ -21,10 +21,10 @@ public class MoveToElementTest extends BaseTest {
         registrationPage = new RegistrationPage();
         kombinovaniSporetiPage = new KombinovaniSporetiPage();
         filterPage = new FilterPage();
-        commentSectionsPage = new CommentSectionsPage();
+        zoricaKomentarPage = new ZoricaKomentarPage();
         bekoFSS54010DWPage = new BekoFSS54010DWPage();
         gorenjeK5111SGPage = new GorenjeK5111SGPage();
-        Thread.sleep(15000);
+//        Thread.sleep(15000);
         WebElement popUpButtonFive = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-36499').shadowRoot.querySelector('#PsCloseButton')");
         WebElement popUpButton = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35743').shadowRoot.querySelector('#PsCloseButton')");
         WebElement popUpButtonOne = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35986').shadowRoot.querySelector('#PsCloseButton')");
@@ -88,18 +88,19 @@ public class MoveToElementTest extends BaseTest {
         Assert.assertTrue(bekoFSS54010DWPage.cenaPopustDisplayed());
         String popust = bekoFSS54010DWPage.cenaPopustAssert();
         Assert.assertEquals("25.579", popust);
-        commentSectionsPage.oceneFocus();
-        commentSectionsPage.oceneClick();
-        Assert.assertTrue(commentSectionsPage.ekonomicanNaslovDisplayed());
-        Assert.assertEquals("EKONOMICAN", commentSectionsPage.ekonomicanNaslovAssert());
-        Assert.assertTrue(commentSectionsPage.datumKomentaraDisplayed());
-        Assert.assertEquals("(28.11.2018)", commentSectionsPage.datumKomentaraAssert());
-        Assert.assertTrue(commentSectionsPage.tekstKomentaraDisplayed());
-        Assert.assertEquals("Odluka o kupovini ovog sporeta je izmedju ostalog doneta zbog nase velike potrosnje struje, sada nam plinske ringle u tome mnogo pomazu. Rerna je dovoljno velika i za gostinsko spremanje a gril koristim u kombinaciji sa konvencionalnim pecenjem. Ciscenje rerne je prava pesma obzirom da ima Steam Shine program. Sve u svemu PUN POGODAK!", commentSectionsPage.tekstKomentaraAssert());
-        Assert.assertTrue(commentSectionsPage.zoricaKomentarDisplayed());
-        Assert.assertEquals("Zorica", commentSectionsPage.zoricaKomentarAssert());
+        zoricaKomentarPage.oceneFocus();
+        zoricaKomentarPage.oceneClick();
+        Assert.assertTrue(zoricaKomentarPage.ekonomicanNaslovDisplayed());
+        Assert.assertEquals("EKONOMICAN", zoricaKomentarPage.ekonomicanNaslovAssert());
+        Assert.assertTrue(zoricaKomentarPage.datumKomentaraDisplayed());
+        Assert.assertEquals("(28.11.2018)", zoricaKomentarPage.datumKomentaraAssert());
+        Assert.assertTrue(zoricaKomentarPage.tekstKomentaraDisplayed());
+        Assert.assertEquals("Odluka o kupovini ovog sporeta je izmedju ostalog doneta zbog nase velike potrosnje struje, sada nam plinske ringle u tome mnogo pomazu. Rerna je dovoljno velika i za gostinsko spremanje a gril koristim u kombinaciji sa konvencionalnim pecenjem. Ciscenje rerne je prava pesma obzirom da ima Steam Shine program. Sve u svemu PUN POGODAK!", zoricaKomentarPage.tekstKomentaraAssert());
+        Assert.assertTrue(zoricaKomentarPage.zoricaKomentarDisplayed());
+        Assert.assertEquals("Zorica", zoricaKomentarPage.zoricaKomentarAssert());
 
     }
+
 
 
 }

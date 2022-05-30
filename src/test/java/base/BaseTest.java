@@ -1,4 +1,4 @@
-package cometradepage.base;
+package base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
