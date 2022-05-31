@@ -1,13 +1,13 @@
-package page;
+package cometradepage.page;
 
-import base.BaseTest;
+import cometradepage.base.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ZoricaKomentarPage extends BaseTest {
-    public ZoricaKomentarPage() {
+public class CommentSectionsPage extends BaseTest {
+    public CommentSectionsPage() {
         PageFactory.initElements(driver,this);
     }
 

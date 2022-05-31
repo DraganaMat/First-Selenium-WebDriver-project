@@ -1,14 +1,14 @@
-package page;
+package cometradepage.page;
 
-import base.BaseTest;
+import cometradepage.base.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class ConfirmationRegistrationPage extends BaseTest {
+public class ConfirmationPage extends BaseTest {
 
-    public ConfirmationRegistrationPage () {
+    public ConfirmationPage() {
 
         PageFactory.initElements(driver,this);
     }
