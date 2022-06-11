@@ -1,6 +1,6 @@
-package cometradepage.page;
+package cometrade.page;
 
-import cometradepage.base.BaseTest;
+import cometrade.base.BaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;

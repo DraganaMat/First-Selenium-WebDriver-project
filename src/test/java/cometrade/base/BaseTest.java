@@ -1,4 +1,4 @@
-package cometradepage.base;
+package cometrade.base;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.After;
@@ -12,8 +12,6 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseTest {
 
     public static WebDriver driver;
-    // static znaci da njemu moze da se pristupa bez pravljenja objekta te klase,
-    // kljucna rec koja govori programu da ovu rec mozemo zvati bez pravljenja objekta ove klase
     public static WebDriverWait wdWait;
     public JavascriptExecutor js;
     public static Actions actions;
@@ -23,8 +21,8 @@ public class BaseTest {
     public void setUp() throws InterruptedException {
         WebDriverManager.chromedriver().setup();
         driver = new ChromeDriver();
-        //ChromeDriver je konstruktor metoda koja pravi objekat
-        // new metoda ključna rec koja rezervise memoriju
+        //ChromeDriver constructor method that makes an object
+        //new key word that allocates memory
         wdWait = new WebDriverWait(driver, 30);
         js = (JavascriptExecutor) driver;
         actions = new Actions(driver);

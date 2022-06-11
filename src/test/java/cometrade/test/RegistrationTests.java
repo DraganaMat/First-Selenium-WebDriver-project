@@ -1,8 +1,8 @@
-package cometradepage.test;
+package cometrade.test;
 
-import cometradepage.base.BaseTest;
-import cometradepage.page.ConfirmationPage;
-import cometradepage.page.RegistrationPage;
+import cometrade.base.BaseTest;
+import cometrade.page.ConfirmationPage;
+import cometrade.page.RegistrationPage;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
