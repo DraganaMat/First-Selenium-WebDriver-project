@@ -1,13 +1,12 @@
 package cometrade.test;
 
-import cometrade.base.BaseTest;
+import cometrade.base.CometradeBaseTest;
 import cometrade.page.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebElement;
 
-public class MoveToElementTest extends BaseTest {
+public class MoveToElementTestCometrade extends CometradeBaseTest {
     RegistrationPage registrationPage;
     KombinovaniSporetiPage kombinovaniSporetiPage;
     FilterPage filterPage;
@@ -24,33 +23,7 @@ public class MoveToElementTest extends BaseTest {
         commentSectionsPage = new CommentSectionsPage();
         bekoFSS54010DWPage = new BekoFSS54010DWPage();
         gorenjeK5111SGPage = new GorenjeK5111SGPage();
-        Thread.sleep(15000);
-        WebElement popUpButtonFive = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-36499').shadowRoot.querySelector('#PsCloseButton')");
-        WebElement popUpButton = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35743').shadowRoot.querySelector('#PsCloseButton')");
-        WebElement popUpButtonOne = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35986').shadowRoot.querySelector('#PsCloseButton')");
-        WebElement popUpButtonTwo = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35018').shadowRoot.querySelector('#PsCloseButton')");
-        WebElement popUpButtonThree = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-35848').shadowRoot.querySelector('#PsCloseButton')");
-        WebElement popUpButtonFour = (WebElement) js.executeScript("return document.querySelector('#popup-smart-root-36444').shadowRoot.querySelector('#PsCloseButton')");
 
-        if (popUpButtonFive.isDisplayed()) {
-            popUpButtonFive.click();
-        }
-        else if (popUpButtonOne.isDisplayed()) {
-            popUpButtonOne.click();
-        }
-        else if (popUpButtonTwo.isDisplayed()){
-            popUpButtonTwo.click();
-        }
-        else if (popUpButtonThree.isDisplayed()) {
-
-            popUpButtonThree.click();
-        } else if (popUpButtonFour.isDisplayed()) {
-
-            popUpButtonFour.click();
-        } else if (popUpButton.isDisplayed()) {
-
-            popUpButton.click();
-        }
     }
 
     /** Ovaj Test Case će hoverovati preko "Svi proizvodi", potom "Bela tehnika" pa na "šporete".

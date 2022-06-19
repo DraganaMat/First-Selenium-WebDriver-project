@@ -1,12 +1,12 @@
 package cometrade.page;
 
-import cometrade.base.BaseTest;
+import cometrade.base.CometradeBaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class FilterPage extends BaseTest {
+public class FilterPage extends CometradeBaseTest {
     public FilterPage() {
         PageFactory.initElements(driver,this);
     }

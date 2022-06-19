@@ -1,6 +1,6 @@
 package cometrade.page;
 
-import cometrade.base.BaseTest;
+import cometrade.base.CometradeBaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
@@ -8,12 +8,12 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 
-public class RegistrationPage extends BaseTest {
-//    naziv klase uvek počinje velikim slovom
+public class RegistrationPage extends CometradeBaseTest {
+
     public RegistrationPage() {
-        //nema povratnu vrednost znaci da je konstruktor metoda
-        //spakovali biblioteku pagefactory za pravljenje web elemenata, inicijalizuje sve web elemente locirane preko @FindBy
-//        Page Factory will initialize every WebElement variable with a reference to a corresponding element on the actual web page based on “locators” defined.
+        //no return value, it means it is constructor method
+//        Page Factory will initialize every WebElement variable with a reference to a corresponding
+//        on the actual web page based on “locators” defined.
 //        This is done by using @FindBy annotations.
         PageFactory.initElements(driver,this);
     }
@@ -31,9 +31,9 @@ public class RegistrationPage extends BaseTest {
     @CacheLookup
     WebElement emailInputField;
     @FindBy (id = "password")
-    WebElement sifraInputField;
+    WebElement passwordInputField;
     @FindBy(id = "confirmation")
-    WebElement potvrdaSifreInputField;
+    WebElement confirmationInputField;
     @FindBy (xpath = "//button[text() = 'Prihvatam']")
     @CacheLookup
     WebElement prihvatamButton;
@@ -56,15 +56,12 @@ public class RegistrationPage extends BaseTest {
     @FindBy (linkText = "Šporeti")
     WebElement sporeti;
 
-    //repozitorijum svih veb elemenata
-
+    //a repo of all web elements
     //Defining all the user actions that can be performed in the loginPage
     //in the form of methods
     public void imeInputFieldSendKeys(String ime) {
         wdWait.until(ExpectedConditions.visibilityOf(imeInputField)).clear();
         imeInputField.sendKeys(ime);
-        //metoda ce svaki put traziti neki string da joj se prosledi, potom ga upisuje u sendKeys
-        // i mozemo je koristiti neogranicen broj puta.
     }
     public void prezimeInputFieldSendKeys (String prezime) {
         wdWait.until(ExpectedConditions.visibilityOf(prezimeInputField)).clear();
@@ -85,15 +82,15 @@ public class RegistrationPage extends BaseTest {
         wdWait.until(ExpectedConditions.visibilityOf(emailInputField)).clear();
         emailInputField.sendKeys(email);
     }
-    public String sifraInputFieldSendKeys (String sifra) {
-        wdWait.until(ExpectedConditions.visibilityOf(sifraInputField)).clear();
-        sifraInputField.sendKeys(sifra);
+    public String passwordInputFieldSendKeys (String sifra) {
+        wdWait.until(ExpectedConditions.visibilityOf(passwordInputField)).clear();
+        passwordInputField.sendKeys(sifra);
         return sifra;
     }
 
-    public String potvrdaSifreInputFieldSendKeys (String potvrda) {
-        wdWait.until(ExpectedConditions.visibilityOf(potvrdaSifreInputField)).clear();
-        potvrdaSifreInputField.sendKeys(potvrda);
+    public String confirmationInputFieldSendKeys (String potvrda) {
+        wdWait.until(ExpectedConditions.visibilityOf(confirmationInputField)).clear();
+        confirmationInputField.sendKeys(potvrda);
         return potvrda;
     }
     public void firmaInputFieldSendKeys (String firma) {

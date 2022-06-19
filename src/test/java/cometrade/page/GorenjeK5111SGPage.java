@@ -1,12 +1,12 @@
 package cometrade.page;
 
-import cometrade.base.BaseTest;
+import cometrade.base.CometradeBaseTest;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class GorenjeK5111SGPage extends BaseTest {
+public class GorenjeK5111SGPage extends CometradeBaseTest {
     public GorenjeK5111SGPage() {
         PageFactory.initElements(driver,this);
     }
